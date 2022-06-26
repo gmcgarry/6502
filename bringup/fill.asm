@@ -1,0 +1,24 @@
+	.base	0xE000
+	.org	0xE000
+start:
+
+fill1:
+	.fill	0x800,0xC8
+fill2:
+	.fill	0x800,0xE8
+fill3:
+	.fill	0x800,0x2A
+fill4:
+	.fill	(0x800 - 8),0xEA
+
+	.org	0xFFF8
+	.byte	0xEA
+	.byte	0x4C	; jmp abs
+
+	.org	0xFFFA
+nmi:
+	.word	start
+reset:
+	.word	start
+irq:
+	.word	start
